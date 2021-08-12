@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="">
+{% for room in rooms %}
+<div class="">
+<div class="">
+    {{ room.img }}
+</div>
+<div class="">
+    {{ room.name }}
+</div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

@@ -20,7 +20,7 @@ from django.urls import path, include
 from . import veiws
 
 urlpatterns = [
-    path('', veiws.home_view),
+    path('', veiws.index, name='index'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 ]
