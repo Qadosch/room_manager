@@ -1,5 +1,9 @@
-{% extends "base_generic.html" %} {% block content %} {% for room in rooms %}
-<div class="row">
+{% extends "base_generic.html" %} {% block content %}
+<div class="row mb-4">
+    <a class="btn btn-primary" href="{% url 'room' %}">New Room</a>
+</div>
+{% for room in rooms %}
+<div class="row mb-2">
     <div class="col-md-1">
         <a href="{% url 'room' room.id %}">
             <div class="row">

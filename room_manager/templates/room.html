@@ -17,11 +17,10 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col">
-        <a class="nav-link" href="{% url 'handover' room.id %}">New Hand Over</a>
-    </div>
+<div class="row mb-4">
+    <a class="btn btn-primary" href="{% url 'handover' room.id %}">New Hand Over</a>
 </div>
+
 {% for handover in handovers %}
 <div class="row">
     <div class="col">
