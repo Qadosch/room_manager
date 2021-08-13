@@ -1,31 +1,42 @@
-{% extends "base_generic.html" %}
-
-{% block content %}
-<div class="">
-    <div class="">
-        {{ room.name }}
+{% extends "base_generic.html" %} {% block content %}
+<div class="row">
+    <div class="col">
+        <div class="row">
+            {{ room.name }}
+        </div>
+        <div class="row">
+            {{ room.description }}
+        </div>
+        <div class="row">
+            {{ room.person }}
+        </div>
     </div>
-    <div class="">
-        {{ room.img }}
+    <div class="col">
+        <div class="">
+            {{ room.img }}
+        </div>
     </div>
-    <div class="">
-        {{ room.description }}
+</div>
+<div class="row">
+    <div class="col">
+        <a class="nav-link" href="{% url 'handover' room.id %}">New Hand Over</a>
     </div>
-    <div class="">
-        {{ room.person }}
-    </div>
+</div>
 {% for handover in handovers %}
-<div class="">
-<div class="">
-    {{ handover.date }}
+<div class="row">
+    <div class="col">
+        <a class="nav-link" href="{% url 'handover' room.id handover.id %}">
+        {{ handover.id }}
+    </a>
+    </div>
+    <div class="col">
+        {{ handover.date }}
+    </div>
+    <div class="col">
+        {{ handover.person }}
+    </div>
+    <div class="col">
+        {{ handover.description }}
+    </div>
 </div>
-<div class="">
-    {{ handover.person }}
-</div>
-<div class="">
-    {{ handover.description }}
-</div>
-</div>
-{% endfor %}
-</div>
-{% endblock %}
+{% endfor %} {% endblock %}

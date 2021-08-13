@@ -10,12 +10,12 @@ def index(request):
     }
     return render(request, 'index.html', context=context)
 
-def room(request, id = None):
-    if id  == None:
+def room(request, room_id = None):
+    if room_id  == None:
         room =  models.Room.objects.create()
         return redirect('room', id=room.id)
     else:
-        room =  models.Room.objects.get(id = id)
+        room =  models.Room.objects.get(id = room_id)
 
     context =  {
         # 'new_room' : None,
@@ -24,12 +24,13 @@ def room(request, id = None):
     }
     return render(request, 'room.html', context=context)
 
-def handover(request, id = None):
-    if id  == None:
-        handover =  models.HandingOver.objects.create()
-        return redirect('handover', id=handover.id)
+def handover(request, room_id,  handover_id=None):
+    if handover_id  == None:
+        room =  models.Room.objects.get(id = room_id)
+        handover =  models.HandingOver.objects.create(room=room)
+        return redirect('handover',room_id=room_id, handover_id=handover.id)
     else:
-        handover =  models.HandingOver.objects.get(id = id)
+        handover =  models.HandingOver.objects.get(id = handover_id)
     
     context =  {
         # 'new_room' : None,

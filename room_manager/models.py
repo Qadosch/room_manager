@@ -14,7 +14,7 @@ class Room(models.Model):
 class HandingOver(models.Model):
     room = models.ForeignKey(Room, related_name='handovers', on_delete=models.SET_NULL, blank=True, null=True,)
 
-    date = models.DateField()
+    date = models.DateField(blank=True, null=True)
     person = models.CharField(blank=True, max_length=256)
     description = models.TextField()
 

@@ -1,6 +1,4 @@
-{% extends "base_generic.html" %}
-
-{% block content %}
+{% extends "base_generic.html" %} {% block content %}
 <div class="">
     <div class="">
         {{ handover.room.name }}
@@ -14,15 +12,15 @@
     <div class="">
         {{ handover.description }}
     </div>
-{% for image in images %}
-<div class="">
-<div class="">
-    {{ image.img }}
-</div>
-<div class="">
-    {{ image.description }}
-</div>
-</div>
-{% endfor %}
+    {% for image in images %}
+    <div class="">
+        <div class="">
+            {{ image.img }}
+        </div>
+        <div class="">
+            {{ image.description }}
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}

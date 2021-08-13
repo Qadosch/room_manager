@@ -1,21 +1,19 @@
-{% extends "base_generic.html" %}
-
-{% block content %}
-<div class="">
-{% for room in rooms %}
-<div class="">
-    <a href="{% url 'room' room.id %}">
-        <div class="">
-            {{ room.id }}
-        </div>
-        <div class="">
+{% extends "base_generic.html" %} {% block content %} {% for room in rooms %}
+<div class="row">
+    <div class="col-md-1">
+        <a href="{% url 'room' room.id %}">
+            <div class="row">
+                {{ room.id }}
+            </div>
+        </a>
+    </div>
+    <div class="col-md-11">
+        <div class="row">
             {{ room.img }}
         </div>
-        <div class="">
+        <div class="row">
             {{ room.name }}
         </div>
-    </a>
+    </div>
 </div>
-{% endfor %}
-</div>
-{% endblock %}
+{% endfor %} {% endblock %}
