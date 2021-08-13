@@ -13,7 +13,7 @@ def index(request):
 def room(request, room_id = None):
     if room_id  == None:
         room =  models.Room.objects.create()
-        return redirect('room', id=room.id)
+        return redirect('room', room_id=room.id)
     else:
         room =  models.Room.objects.get(id = room_id)
 
