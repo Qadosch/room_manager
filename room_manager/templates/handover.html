@@ -11,7 +11,7 @@
 <div class="row mb-4">
     <div class="col-md-5">
         <form method="post" enctype="multipart/form-data"> {% csrf_token %}
-
+            <input type="text" name="HandingOverForm" value="1" hidden>
             <div class="row mb-3 input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text"><i class="bi bi-calendar-date"></i></div>
@@ -32,16 +32,46 @@
             <input type="submit" class="btn btn-primary">
         </form>
     </div>
-    {% for image in images %}
-    <div class=" ">
-        <div class=" ">
-            {{ image.img }}
-        </div>
-        <div class=" ">
-            {{ image.description }}
-        </div>
-    </div>
-    {% endfor %}
 
 </div>
+<hr/> {% for image in images %}
+<div class="row mb-3">
+    <div class="col-md-5">
+        <form method="post" enctype="multipart/form-data"> {% csrf_token %}
+            <input type="number" name="immage_id" value="{{image.id}}" hidden>
+            <input type="text" name="ImageForm" value="1" hidden>
+            <div class="row mb-3">
+                {% if image.img %}
+                <img src="{{ image.img.url }}" class="img-fluid" /> {% endif %}
+            </div>
+            <div class="row mb-3 form-group">
+                <label for="img" class="form-label">Update Picture</label>
+                <input type="file" class="form-control-file" name="immage_img" accept="image/*">
+            </div>
+            <div class="row mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea rows="2" class="form-control" name="immage_description">{{ image.description }}</textarea>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Update">
+        </form>
+    </div>
+</div>
+<hr/> {% endfor %}
+<div class="row mb-3 ">
+    <div class="col-md-5">
+        <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+            <input type="text" name="ImageForm" value="1" hidden>
+            <div class="row mb-3 form-group">
+                <label for="img" class="form-label">New Picture</label>
+                <input type="file" class="form-control-file" name="immage_img" accept="image/*">
+            </div>
+            <div class="row mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea rows="2" class="form-control" name="immage_description">{{ image.description }}</textarea>
+            </div>
+            <input type="submit" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+
 {% endblock %}
