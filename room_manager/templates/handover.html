@@ -1,15 +1,25 @@
 {% extends "base_generic.html" %} {% load static %} {% block content %}
 
 <div class="row mb-4">
-    <a class="btn btn-primary" href="{% url 'room' handover.room.id %}">Room</a>
+    <a class="btn btn-primary">Room</a>
 </div>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'room' handover.room.id %}">{{ handover.room.name }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ handover.id }}</li>
+    </ol>
+</nav>
 
 <div class="">
     <div class="">
-        {{ handover.room.name }}
-    </div>
-    <div class="">
-        {{ handover.date }}
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><i class="bi bi-calendar-date"></i></div>
+            </div>
+            <input type="text" name="date" class="form-control" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+        </div>
     </div>
     <div class="">
         {{ handover.person }}

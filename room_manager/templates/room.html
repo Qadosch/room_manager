@@ -1,4 +1,11 @@
 {% extends "base_generic.html" %} {% load static %} {% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ room.name }}</li>
+    </ol>
+</nav>
+
 <div class="row mb-4">
     <div class="col-md-5">
         <form method="post" enctype="multipart/form-data"> {% csrf_token %}
