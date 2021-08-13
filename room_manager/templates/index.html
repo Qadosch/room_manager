@@ -4,12 +4,17 @@
 <div class="">
 {% for room in rooms %}
 <div class="">
-<div class="">
-    {{ room.img }}
-</div>
-<div class="">
-    {{ room.name }}
-</div>
+    <a href="{% url 'room' room.id %}">
+        <div class="">
+            {{ room.id }}
+        </div>
+        <div class="">
+            {{ room.img }}
+        </div>
+        <div class="">
+            {{ room.name }}
+        </div>
+    </a>
 </div>
 {% endfor %}
 </div>

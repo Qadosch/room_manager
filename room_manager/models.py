@@ -7,9 +7,12 @@ class Room(models.Model):
     img = models.FileField()
     person = models.CharField(blank=True, max_length=256)
 
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
 
 class HandingOver(models.Model):
-    room = models.ForeignKey(Room, models.SET_NULL, blank=True, null=True,)
+    room = models.ForeignKey(Room, related_name='handovers', on_delete=models.SET_NULL, blank=True, null=True,)
 
     date = models.DateField()
     person = models.CharField(blank=True, max_length=256)
@@ -18,8 +21,9 @@ class HandingOver(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+
 class Image(models.Model):
-    handing_over = models.ForeignKey(HandingOver, models.CASCADE)
+    handing_over = models.ForeignKey(HandingOver, related_name='images', on_delete=models.CASCADE)
 
     img = models.FileField()
     description = models.TextField()

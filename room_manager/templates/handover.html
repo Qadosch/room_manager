@@ -3,27 +3,24 @@
 {% block content %}
 <div class="">
     <div class="">
-        {{ room.name }}
+        {{ handover.room.name }}
     </div>
     <div class="">
-        {{ room.img }}
+        {{ handover.date }}
     </div>
     <div class="">
-        {{ room.description }}
+        {{ handover.person }}
     </div>
     <div class="">
-        {{ room.person }}
+        {{ handover.description }}
     </div>
-{% for handover in handovers %}
+{% for image in images %}
 <div class="">
 <div class="">
-    {{ handover.date }}
+    {{ image.img }}
 </div>
 <div class="">
-    {{ handover.person }}
-</div>
-<div class="">
-    {{ handover.description }}
+    {{ image.description }}
 </div>
 </div>
 {% endfor %}
