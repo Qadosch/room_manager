@@ -29,6 +29,5 @@ urlpatterns = [
     path('room/<int:room_id>/handover/<int:handover_id>/', views.handover, name='handover'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
+    path('media/<str:filename>', views.media, name='media'),
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

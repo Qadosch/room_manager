@@ -1,11 +1,17 @@
+import os
 from django import forms
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.http import FileResponse
 
 from . import models
 from . import forms
+from . import settings
 
+@login_required
+def media(request, filename):
+    return FileResponse(open(os.path.join(settings.MEDIA_ROOT, filename), 'rb'))
 
 @login_required
 def index(request):
