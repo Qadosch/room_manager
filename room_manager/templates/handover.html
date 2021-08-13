@@ -1,9 +1,5 @@
 {% extends "base_generic.html" %} {% load static %} {% block content %}
 
-<div class="row mb-4">
-    <a class="btn btn-primary">Room</a>
-</div>
-
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
@@ -12,30 +8,40 @@
     </ol>
 </nav>
 
-<div class="">
-    <div class="">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><i class="bi bi-calendar-date"></i></div>
+<div class="row mb-4">
+    <div class="col-md-5">
+        <form method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+            <div class="row mb-3 input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="bi bi-calendar-date"></i></div>
+                </div>
+                <input type="text" name="date" class="form-control" data-provide="datepicker" data-date-format="yyyy-mm-dd" value="{{ handover.date|date:'Y-m-d' }}">
             </div>
-            <input type="text" name="date" class="form-control" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-        </div>
-    </div>
-    <div class="">
-        {{ handover.person }}
-    </div>
-    <div class="">
-        {{ handover.description }}
+
+            <div class="row mb-3 ">
+                <label for="person" class="form-label">Person </label>
+                <input id="person" type="text" class="form-control" name="person" value="{{ handover.person }} ">
+            </div>
+
+            <div class="row mb-3 ">
+                <label for="description" class="form-label ">Description</label>
+                <textarea id="description" rows="3" class="form-control" name="description">{{ handover.description }}</textarea>
+            </div>
+
+            <input type="submit" class="btn btn-primary">
+        </form>
     </div>
     {% for image in images %}
-    <div class="">
-        <div class="">
+    <div class=" ">
+        <div class=" ">
             {{ image.img }}
         </div>
-        <div class="">
+        <div class=" ">
             {{ image.description }}
         </div>
     </div>
     {% endfor %}
+
 </div>
 {% endblock %}
