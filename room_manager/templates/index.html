@@ -1,23 +1,18 @@
-{% extends "base_generic.html" %} {% block content %}
+{% extends "base_generic.html" %} {% load static %} {% block content %}
 <div class="row mb-4">
     <a class="btn btn-primary" href="{% url 'room' %}">New Room</a>
 </div>
 {% for room in rooms %}
-<div class="row mb-2">
-    <div class="col-md-1">
-        <a href="{% url 'room' room.id %}">
-            <div class="row">
-                {{ room.id }}
-            </div>
-        </a>
-    </div>
-    <div class="col-md-11">
-        <div class="row">
-            {{ room.img }}
+<a href="{% url 'room' room.id %}">
+    <div class="row mb-2">
+        <div class="col-md-2">
+            {% if room.img %}
+            <img src="{{ room.img.url }}" class="img-thumbnail" /> {% else %}
+            <img src="{% static 'placeholder.png'%}" class="img-thumbnail" /> {% endif %}
         </div>
-        <div class="row">
+        <div class="col">
             {{ room.name }}
         </div>
     </div>
-</div>
+</a>
 {% endfor %} {% endblock %}

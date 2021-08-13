@@ -1,28 +1,40 @@
-{% extends "base_generic.html" %} {% block content %}
-<div class="row">
-    <div class="col">
-        <div class="row">
-            {{ room.name }}
-        </div>
-        <div class="row">
-            {{ room.description }}
-        </div>
-        <div class="row">
-            {{ room.person }}
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            {{ room.img }}
-        </div>
-    </div>
-</div>
+{% extends "base_generic.html" %} {% load static %} {% block content %}
 <div class="row mb-4">
-    <a class="btn btn-primary" href="{% url 'handover' room.id %}">New Hand Over</a>
+    <div class="col-md-5">
+        <form method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+            <div class="row mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input id="name" type="text" class="form-control" name="name" value="{{ room.name }}">
+            </div>
+            <div class="row mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" rows="3" class="form-control" name="description">{{ room.description }}</textarea>
+            </div>
+            <div class="row mb-3">
+                <label for="person" class="form-label">Person </label>
+                <input id="person" type="text" class="form-control" name="person" value="{{ room.person }}">
+            </div>
+            <div class="row mb-3">
+                {% if room.img %}
+                <img src="{{ room.img.url }}" class="img-fluid" /> {% endif %}
+            </div>
+            <div class="row mb-3">
+                <label for="img" class="form-label">Update Picture</label>
+                <input type="file" class="form-control-file" id="img" name="img" accept="image/*">
+            </div>
+
+            <input type="submit" class="btn btn-primary">
+        </form>
+    </div>
 </div>
 
-{% for handover in handovers %}
-<div class="row">
+{% if not handovers %}
+<div class="row mb-4">
+    <p>No Hand Overs</p>
+</div>
+{% endif %} {% for handover in handovers %}
+<div class="row mb-4">
     <div class="col">
         <a class="nav-link" href="{% url 'handover' room.id handover.id %}">
         {{ handover.id }}
@@ -38,4 +50,9 @@
         {{ handover.description }}
     </div>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %}
+<div class="row mb-4">
+    <a class="btn btn-primary" href="{% url 'handover' room.id %}">New Hand Over</a>
+</div>
+
+{% endblock %}

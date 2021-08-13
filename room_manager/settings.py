@@ -29,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+APP_NAME = 'room_manager'
 
 # Application definition
 
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'room_manager'
+    APP_NAME
 ]
 
 MIDDLEWARE = [
@@ -126,6 +127,9 @@ EMAIL_HOST_PASSWORD=''
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,APP_NAME,'media')
+MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/'
 

@@ -4,7 +4,7 @@ from django.db.models.deletion import CASCADE
 class Room(models.Model):
     name = models.CharField(blank=True, max_length=256)
     description = models.TextField()
-    img = models.FileField()
+    img = models.ImageField()
     person = models.CharField(blank=True, max_length=256)
 
     created = models.DateTimeField(auto_now_add=True)
@@ -25,7 +25,7 @@ class HandingOver(models.Model):
 class Image(models.Model):
     handing_over = models.ForeignKey(HandingOver, related_name='images', on_delete=models.CASCADE)
 
-    img = models.FileField()
+    img = models.ImageField()
     description = models.TextField()
     
     created = models.DateTimeField(auto_now_add=True)

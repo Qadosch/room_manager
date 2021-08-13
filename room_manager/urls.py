@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import login
 from django.urls import path, include
+from django.conf.urls.static import static
 
 from . import views
+from . import settings
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -29,3 +31,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

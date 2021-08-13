@@ -1,4 +1,9 @@
-{% extends "base_generic.html" %} {% block content %}
+{% extends "base_generic.html" %} {% load static %} {% block content %}
+
+<div class="row mb-4">
+    <a class="btn btn-primary" href="{% url 'room' handover.room.id %}">Room</a>
+</div>
+
 <div class="">
     <div class="">
         {{ handover.room.name }}
