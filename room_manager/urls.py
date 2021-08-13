@@ -27,7 +27,6 @@ urlpatterns = [
     path('room/<int:room_id>/', views.room, name='room'),
     path('room/<int:room_id>/handover/', views.handover, name='handover'),
     path('room/<int:room_id>/handover/<int:handover_id>/', views.handover, name='handover'),
-    # path('handover/<int:id>/edit/', views.handover, name='handover'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 ]
