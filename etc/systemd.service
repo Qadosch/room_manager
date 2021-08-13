@@ -1,0 +1,19 @@
+[Unit]
+Description=room_manager
+After=network.target
+
+[Service]
+PermissionsStartOnly = true
+PIDFile=/var/run/room_manager/room_manager.pid
+User=oleg
+RuntimeDirectory=room_manager
+RuntimeDirectoryMode=755
+Environment=PYTHONPATH=/home/oleg/projects/room_manager/.venv/lib/python3.6/site-packages
+Environment=DJANGO_SETTINGS_MODULE=room_manager.settings
+ExecStart=/home/oleg/projects/room_manager/.venv/bin/gunicorn room_manager.wsgi:application -c /home/oleg/projects/room_manager/etc/gunicorn.conf
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
